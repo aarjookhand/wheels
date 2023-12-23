@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+<body>
+    <h1>Invoice</h1>
+    
+    <h2>User Information</h2>
+    <p>User ID: {{ user.id }}</p>
+    <p>User Email: {{ user.email }}</p>
+    <!-- Add more user details as needed -->
+
+    <h2>Driver Information</h2>
+    <p>Driver Username: {{ driver.username }}</p>
+    <!-- Add more driver details as needed -->
+
+    <h2>Ride Details</h2>
+    <p>Order ID: {{ order._id }}</p>
+    <p>Total Cost: {{ order.total_cost }}</p>
+    <!-- Add more ride details as needed -->
+
+</body>
+</html>

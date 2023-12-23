@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Map</title>
+    <!-- Include the Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Include the CSS for the MiniMap plugin -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-minimap/dist/Control.MiniMap.min.css" />
+</head>
+<body>
+
+
+    <a href="{{ url_for('driver_blueprint.view_profile') }}" class="btn btn-primary">View Profile</a>
+
+
+
+    <!-- Display the map content -->
+    {{ map_content | safe }}
+
+    <!-- Include the Leaflet JavaScript library -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Include the JavaScript for the MiniMap plugin -->
+    <script src="https://unpkg.com/leaflet-minimap/dist/Control.MiniMap.min.js"></script>
+
+
+
+
+    <h1>Driver Homepage</h1>
+
+    {% if open_orders %}
+    <h2>Open Orders</h2>
+    <ul>
+        {% for order in open_orders %}
+            <li>
+
+                Departure Time: {{ order.departure_time }}
+                Pickup location: {{ order.pickup_location }}
+                Destination: {{ order.destination }}
+
+                {% if not order.accepted %}
+                    <form method="POST" action="{{ url_for('driver_blueprint.details', order_id=order._id) }}">
+                        <!-- Other form fields -->
+                        <input type="hidden" name="status" value="received">
+                        <button type="submit">Accept Order</button>
+                    </form>
+                {% else %}
+                    Order Accepted
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No open orders for your vehicle type at the moment.</p>
+{% endif %}
+
+    
+
+</body>
+</html>

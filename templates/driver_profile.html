@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Profile</title>
+</head>
+<body>
+
+    <h1>Driver Profile</h1>
+
+    <img src="data:image/jpeg;base64,{{ driver_info.profile_picture }}">
+
+    <form method="POST" action="{{ url_for('driver_blueprint.delete_profile_picture') }}">
+        <button type="button" onclick="confirmDelete()">Delete Profile Picture</button>
+    </form>
+    
+
+    <form method="POST" action="{{ url_for('driver_blueprint.view_profile') }}" enctype="multipart/form-data">
+        <label for="new_email">New Email:</label>
+        <input type="email" id="new_email" name="new_email">
+        <button type="submit">Update Email</button>
+    </form>
+
+
+
+    <form method="POST" action="{{ url_for('driver_blueprint.view_profile') }}" enctype="multipart/form-data">
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" id="profile_picture" name="profile_picture">
+        <button type="submit">Add Profile Picture</button>
+    </form>
+
+   
+
+</body>
+<script>
+    function confirmDelete() {
+        var result = confirm("Are you sure you want to delete your profile picture?");
+        if (result) {
+           
+            document.forms[0].submit();
+        }
+    }
+</script>
+</html>
