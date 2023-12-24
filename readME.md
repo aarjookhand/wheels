@@ -25,29 +25,29 @@ This project is designed to showcase the implementation of ride-sharing function
 
 The application is structured as follows:
 
-|-- blueprints/
-|   |-- auth.py
-|   |-- driver.py
-|   |-- user.py
-|-- templates/
-|   |-- booking_details.html
-|   |-- driver_homepage.html
-|   |-- driver_invoice.html
-|   |-- driver_profile.html
-|   |-- driver_signup.html
-|   |-- login.html
-|   |-- map_template.html
-|   |-- ride_details.html
-|   |-- user_homepage.html
-|   |-- user_invoice.html
-|   |-- user_signup.html
-|   |-- waiting_page.html
-|   |-- welcome.html
-|-- .env
-|-- app.py
-|-- README.md
-|-- requirements.txt
-|-- uber.db
+- **app.py**: The main entry point for the application.
+- **blueprints/**: Directory containing Flask Blueprints.
+  - **auth.py**: Blueprint for authentication and authorization.
+  - **driver.py**: Blueprint for driver-related functionalities.
+  - **user.py**: Blueprint for user-related functionalities.
+- **templates/**: HTML templates used for rendering views.
+  - **booking_details.html**: Template for booking details.
+  - **driver_homepage.html**: Template for the driver's homepage.
+  - **driver_invoice.html**: Template for the driver's invoice.
+  - **driver_profile.html**: Template for the driver's profile.
+  - **driver_signup.html**: Template for the driver's signup.
+  - **login.html**: Template for user authentication.
+  - **map_template.html**: Template for displaying maps.
+  - **ride_details.html**: Template for ride details.
+  - **user_homepage.html**: Template for the user's homepage.
+  - **user_invoice.html**: Template for the user's invoice.
+  - **user_signup.html**: Template for the user's signup.
+  - **waiting_page.html**: Template for the waiting page.
+  - **welcome.html**: Template for the welcome page.
+- **.env**: Environment variables configuration file.
+- **README.md**: Project documentation.
+- **requirements.txt**: Project requirements
+- **uber.db**: SQLite database file.
 
 
 
