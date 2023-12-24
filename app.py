@@ -1,11 +1,11 @@
 from flask import Flask, request
 from flask_login import LoginManager
-from auth import auth_blueprint
-from user import user_blueprint
-from driver import driver_blueprint
+from blueprints.auth import auth_blueprint
+from blueprints.user import user_blueprint
+from blueprints.driver import driver_blueprint
 from flask_mail import Mail
 from flask_babel import Babel
-from auth import load_user 
+from blueprints.auth import load_user 
 
 
 app = Flask(__name__)

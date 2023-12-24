@@ -7,7 +7,7 @@ from flask_mail import  Mail, Message
 import sqlite3
 from bson import ObjectId
 from math import radians, sin, cos, sqrt, atan2
-from auth import User
+from blueprints.auth import User
 import logging
 import folium
 from folium.plugins import MiniMap
@@ -116,7 +116,7 @@ def index():
     folium.Marker([48.8566, 2.3522]).add_to(map_obj)
     MiniMap().add_to(map_obj)
 
-    return render_template('user_homepage.html', map_content=map_obj._repr_html_())
+    return render_template('user_homepage.html', map_content=map_obj._repr_html_(), get_locale=get_locale)
 
 
 
@@ -137,7 +137,7 @@ def waiting_page(ride_request_id):
         from_form=True
     )
 
-    return render_template('waiting_page.html', ride_request=ride_request, map_content=map_content)
+    return render_template('waiting_page.html', ride_request=ride_request, map_content=map_content, get_locale=get_locale)
 
 # Function to render a map with specified coordinates
 def render_map(coords_from, coords_to, from_form=True):
@@ -156,7 +156,7 @@ def render_map(coords_from, coords_to, from_form=True):
         MiniMap().add_to(map_obj)
 
         if from_form:
-            return render_template('map_template.html', map_content=map_obj._repr_html_())
+            return render_template('map_template.html', map_content=map_obj._repr_html_(), get_locale=get_locale)
         else:
             return map_obj._repr_html_()
     else:
@@ -179,7 +179,7 @@ def booking_details(ride_request_id):
     drivers_collection = db['drivers']
     drivers = drivers_collection.find({'vehicle': ride_request['vehicle_type']})
 
-    return render_template('booking_details.html', ride_request=ride_request, drivers=drivers)
+    return render_template('booking_details.html', ride_request=ride_request, drivers=drivers, get_locale=get_locale)
 
 
 
@@ -232,7 +232,7 @@ def display_user_invoice(order_id):
     except Exception as e:
         flash(f'Error sending invoice email: {str(e)}', 'error')
 
-    return render_template('user_invoice.html', order=order, user=user, driver=driver)
+    return render_template('user_invoice.html', order=order, user=user, driver=driver, get_locale=get_locale)
 
 # Function to send an invoice email to the user
 def send_invoice_email(recipient, invoice_content):

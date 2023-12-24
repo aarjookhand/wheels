@@ -11,7 +11,7 @@ from folium.plugins import MiniMap
 import sqlite3
 from bson import ObjectId
 from bson.errors import InvalidId
-from auth import Driver, User
+from blueprints.auth import Driver, User
 from flask_mail import Message, Mail
 import os
 
