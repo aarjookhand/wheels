@@ -1,46 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ get_locale() }}">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Profile</title>
+    <title>{{ _('WHEELS - Profile') }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e6e6e6;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .profile-container {
+            max-width: 500px;
+            min-height: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,a {
+            text-align: center;
+            color: #000;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #555; 
+        }
+
+        input[type="email"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #555; 
+            border-radius: 4px;
+            color: #555; 
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        button {
+            background-color: #555; 
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #333; 
+        }
+
+        script {
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
+    <div class="profile-container">
 
-    <h1>Driver Profile</h1>
+    <h1>Profile</h1>
 
-    <img src="data:image/jpeg;base64,{{ driver_info.profile_picture }}">
+    <img src="data:image/jpeg;base64,{{ driver_info.profile_picture }}" alt="Profile Picture">
+
+
 
     <form method="POST" action="{{ url_for('driver_blueprint.delete_profile_picture') }}">
         <button type="button" onclick="confirmDelete()">Delete Profile Picture</button>
     </form>
+
     
 
     <form method="POST" action="{{ url_for('driver_blueprint.view_profile') }}" enctype="multipart/form-data">
-        <label for="new_email">New Email:</label>
-        <input type="email" id="new_email" name="new_email">
+        <label for="new_email">Update new email? Enter here!</label>
+        <input type="email" id="new_email" name="new_email" required>
         <button type="submit">Update Email</button>
     </form>
 
-
-
     <form method="POST" action="{{ url_for('driver_blueprint.view_profile') }}" enctype="multipart/form-data">
-        <label for="profile_picture">Profile Picture:</label>
-        <input type="file" id="profile_picture" name="profile_picture">
+        <label for="profile_picture">Browse Profile Picture</label>
+        <input type="file" id="profile_picture" name="profile_picture" accept=".jpg, .jpeg, .png" required>
         <button type="submit">Add Profile Picture</button>
     </form>
+    
+    <br>
 
-   
+    <label> <a href="{{ url_for('driver_blueprint.index') }}">{{ _('Back to Homepage') }}</a></label>
+    
+</div>
 
-</body>
-<script>
-    function confirmDelete() {
-        var result = confirm("Are you sure you want to delete your profile picture?");
-        if (result) {
-           
-            document.forms[0].submit();
+    <script>
+        function confirmDelete() {
+            var result = confirm("Are you sure you want to delete your profile picture?");
+            if (result) {
+                document.forms[0].submit();
+            }
         }
-    }
-</script>
+    </script>
+</body>
+
 </html>

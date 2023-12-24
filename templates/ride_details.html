@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('WHEELS - Ride Details') }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 20px;
+            padding: 20px;
+        }
+
+
+        .details-container {
+            max-width: 500px;
+            min-height: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        div {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #000000d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="details-container">
+
+    <h1>WHEELS</h1>
+    <br>
+
+    <div >
+        <h2>Order Details</h2>
+
+        <p>Departure Time: {{ order.departure_time }}</p>
+        <p>Client Email: {{ order.user_email }}</p>
+        <p>Pickup Location: {{ order.pickup_location }}</p>
+        <p>Destination: {{ order.destination }}</p>
+      
+    </div>
+
+    <div class="button-container">
+        <a href="{{ url_for('driver_blueprint.display_invoice', order_id=order._id) }}">{{ _('Completed?') }}</a>
+    </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('WHEELS - Booking Details')}}</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+            background-color: #f0f0f0; 
+           
+            color: #333;
+        }
+
+        form {
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333; 
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f8f8f8; 
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333; 
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        a:hover {
+            background-color: #555; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <form>
+        <h2>{{ _('Ride Details') }}</h2>
+        <p>{{ ride_request.user_email }}</p>
+        <p>Vehicle Booked: {{ ride_request.vehicle_type }}</p>
+
+        <h2>{{ _('Available Drivers') }}</h2>
+
+        <ul>
+            {% for driver in drivers %}
+                {% if driver.vehicle == ride_request.vehicle_type %}
+                    <li>{{ driver.fullname }} - {{ driver.vehicle }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('user_blueprint.display_user_invoice', order_id=ride_request['_id']) }}">{{ _('View Invoice Details') }}</a>
+        <h1> <a href="{{ url_for('user_blueprint.waiting_page', ride_request_id=ride_request['_id']) }}">{{ _('Back to Map') }}</a></h1>
+
+        
+    </form>
+
+</body>
+
+</html>
